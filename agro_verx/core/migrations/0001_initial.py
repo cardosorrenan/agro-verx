@@ -8,16 +8,32 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
             name='CoreStateModel',
             fields=[
-                ('state_id', models.BigAutoField(db_column='state_id', primary_key=True, serialize=False)),
-                ('state_name', models.CharField(db_column='state_name', max_length=255, unique=True)),
-                ('state_abbreviation', models.CharField(db_column='state_abbreviation', max_length=2, unique=True)),
+                (
+                    'state_id',
+                    models.BigAutoField(
+                        db_column='state_id', primary_key=True, serialize=False
+                    ),
+                ),
+                (
+                    'state_name',
+                    models.CharField(
+                        db_column='state_name', max_length=255, unique=True
+                    ),
+                ),
+                (
+                    'state_abbreviation',
+                    models.CharField(
+                        db_column='state_abbreviation',
+                        max_length=2,
+                        unique=True,
+                    ),
+                ),
             ],
             options={
                 'verbose_name': 'State',
@@ -28,9 +44,25 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='CoreCityModel',
             fields=[
-                ('city_id', models.BigAutoField(db_column='city_id', primary_key=True, serialize=False)),
-                ('city_name', models.CharField(db_column='city_name', max_length=255)),
-                ('state_id', models.ForeignKey(db_column='state_id', on_delete=django.db.models.deletion.PROTECT, related_name='cities', to='core.corestatemodel')),
+                (
+                    'city_id',
+                    models.BigAutoField(
+                        db_column='city_id', primary_key=True, serialize=False
+                    ),
+                ),
+                (
+                    'city_name',
+                    models.CharField(db_column='city_name', max_length=255),
+                ),
+                (
+                    'state_id',
+                    models.ForeignKey(
+                        db_column='state_id',
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name='cities',
+                        to='core.corestatemodel',
+                    ),
+                ),
             ],
             options={
                 'verbose_name': 'City',

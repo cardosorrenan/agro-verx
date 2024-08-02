@@ -16,8 +16,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ProducerPlantationTypeModel',
             fields=[
-                ('plantation_type_id', models.BigAutoField(db_column='plantation_type_id', primary_key=True, serialize=False)),
-                ('plantation_type', models.CharField(db_column='plantation_type', max_length=50, unique=True)),
+                (
+                    'plantation_type_id',
+                    models.BigAutoField(
+                        db_column='plantation_type_id',
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                (
+                    'plantation_type',
+                    models.CharField(
+                        db_column='plantation_type', max_length=50, unique=True
+                    ),
+                ),
             ],
             options={
                 'verbose_name': 'Plantation Type',
@@ -28,18 +40,88 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ProducerModel',
             fields=[
-                ('producer_id', models.BigAutoField(db_column='producer_id', primary_key=True, serialize=False)),
-                ('producer_name', models.CharField(db_column='producer_name', max_length=255)),
-                ('producer_document_type', models.CharField(choices=[('CPF', 'CPF'), ('CNPJ', 'CNPJ')], db_column='producer_document_type', max_length=4)),
-                ('producer_document_number', models.CharField(db_column='producer_document_number', max_length=20)),
-                ('farm_name', models.CharField(db_column='farm_name', max_length=128)),
-                ('total_area_hectares', models.DecimalField(db_column='total_area_hectares', decimal_places=2, max_digits=10, null=True)),
-                ('arable_area_hectares', models.DecimalField(db_column='arable_area_hectares', decimal_places=2, max_digits=10, null=True)),
-                ('vegetation_area_hectares', models.DecimalField(db_column='vegetation_area', decimal_places=2, max_digits=10, null=True)),
-                ('created_at', models.DateTimeField(auto_now_add=True, db_column='created_at')),
-                ('updated_at', models.DateTimeField(auto_now=True, db_column='updated_at')),
+                (
+                    'producer_id',
+                    models.BigAutoField(
+                        db_column='producer_id',
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                (
+                    'producer_name',
+                    models.CharField(
+                        db_column='producer_name', max_length=255
+                    ),
+                ),
+                (
+                    'producer_document_type',
+                    models.CharField(
+                        choices=[('CPF', 'CPF'), ('CNPJ', 'CNPJ')],
+                        db_column='producer_document_type',
+                        max_length=4,
+                    ),
+                ),
+                (
+                    'producer_document_number',
+                    models.CharField(
+                        db_column='producer_document_number', max_length=20
+                    ),
+                ),
+                (
+                    'farm_name',
+                    models.CharField(db_column='farm_name', max_length=128),
+                ),
+                (
+                    'total_area_hectares',
+                    models.DecimalField(
+                        db_column='total_area_hectares',
+                        decimal_places=2,
+                        max_digits=10,
+                        null=True,
+                    ),
+                ),
+                (
+                    'arable_area_hectares',
+                    models.DecimalField(
+                        db_column='arable_area_hectares',
+                        decimal_places=2,
+                        max_digits=10,
+                        null=True,
+                    ),
+                ),
+                (
+                    'vegetation_area_hectares',
+                    models.DecimalField(
+                        db_column='vegetation_area',
+                        decimal_places=2,
+                        max_digits=10,
+                        null=True,
+                    ),
+                ),
+                (
+                    'created_at',
+                    models.DateTimeField(
+                        auto_now_add=True, db_column='created_at'
+                    ),
+                ),
+                (
+                    'updated_at',
+                    models.DateTimeField(
+                        auto_now=True, db_column='updated_at'
+                    ),
+                ),
                 ('is_deleted', models.BooleanField(default=False)),
-                ('city_id', models.ForeignKey(db_column='city_id', null=True, on_delete=django.db.models.deletion.PROTECT, related_name='producers', to='core.corecitymodel')),
+                (
+                    'city_id',
+                    models.ForeignKey(
+                        db_column='city_id',
+                        null=True,
+                        on_delete=django.db.models.deletion.PROTECT,
+                        related_name='producers',
+                        to='core.corecitymodel',
+                    ),
+                ),
             ],
             options={
                 'verbose_name': 'Producer',
@@ -50,11 +132,46 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='ProducerPlantationModel',
             fields=[
-                ('producer_plantation_id', models.BigAutoField(db_column='producer_plantation_id', primary_key=True, serialize=False)),
-                ('created_at', models.DateTimeField(auto_now_add=True, db_column='producer_plantation_created_at')),
-                ('updated_at', models.DateTimeField(auto_now=True, db_column='producer_plantation_updated_at')),
-                ('producer_id', models.ForeignKey(db_column='producer_id', on_delete=django.db.models.deletion.CASCADE, related_name='producers', to='producer.producermodel')),
-                ('plantation_type_id', models.ForeignKey(db_column='plantation_type_id', on_delete=django.db.models.deletion.CASCADE, related_name='plantation_types', to='producer.producerplantationtypemodel')),
+                (
+                    'producer_plantation_id',
+                    models.BigAutoField(
+                        db_column='producer_plantation_id',
+                        primary_key=True,
+                        serialize=False,
+                    ),
+                ),
+                (
+                    'created_at',
+                    models.DateTimeField(
+                        auto_now_add=True,
+                        db_column='producer_plantation_created_at',
+                    ),
+                ),
+                (
+                    'updated_at',
+                    models.DateTimeField(
+                        auto_now=True,
+                        db_column='producer_plantation_updated_at',
+                    ),
+                ),
+                (
+                    'producer_id',
+                    models.ForeignKey(
+                        db_column='producer_id',
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name='producers',
+                        to='producer.producermodel',
+                    ),
+                ),
+                (
+                    'plantation_type_id',
+                    models.ForeignKey(
+                        db_column='plantation_type_id',
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name='plantation_types',
+                        to='producer.producerplantationtypemodel',
+                    ),
+                ),
             ],
             options={
                 'verbose_name': 'Producer Platantions Types',
@@ -64,6 +181,9 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='producermodel',
             name='plantations',
-            field=models.ManyToManyField(through='producer.ProducerPlantationModel', to='producer.producerplantationtypemodel'),
+            field=models.ManyToManyField(
+                through='producer.ProducerPlantationModel',
+                to='producer.producerplantationtypemodel',
+            ),
         ),
     ]
