@@ -1,0 +1,37 @@
+[
+    {
+        "model": "producer.producerplantationtypemodel",
+        "pk": 1,
+        "fields": {
+            "plantation_type": "Soja"
+        }
+    },
+    {
+        "model": "producer.producerplantationtypemodel",
+        "pk": 2,
+        "fields": {
+            "plantation_type": "Milho"
+        }
+    },
+    {
+        "model": "producer.producerplantationtypemodel",
+        "pk": 3,
+        "fields": {
+            "plantation_type": "Algodão"
+        }
+    },
+    {
+        "model": "producer.producerplantationtypemodel",
+        "pk": 4,
+        "fields": {
+            "plantation_type": "Café"
+        }
+    },
+    {
+        "model": "producer.producerplantationtypemodel",
+        "pk": 5,
+        "fields": {
+            "plantation_type": "Cana de Açúcar"
+        }
+    }
+]
