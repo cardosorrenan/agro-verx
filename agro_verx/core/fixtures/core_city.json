@@ -1,0 +1,202 @@
+[
+    {
+        "model": "core.corecitymodel",
+        "pk": 1,
+        "fields": {
+            "city_name": "São Luís",
+            "state_id": 10
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 2,
+        "fields": {
+            "city_name": "Maceió",
+            "state_id": 2
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 3,
+        "fields": {
+            "city_name": "Natal",
+            "state_id": 20
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 4,
+        "fields": {
+            "city_name": "Campo Grande",
+            "state_id": 12
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 5,
+        "fields": {
+            "city_name": "Teresina",
+            "state_id": 18
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 6,
+        "fields": {
+            "city_name": "João Pessoa",
+            "state_id": 15
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 7,
+        "fields": {
+            "city_name": "Uberlândia",
+            "state_id": 13
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 8,
+        "fields": {
+            "city_name": "Contagem",
+            "state_id": 13
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 9,
+        "fields": {
+            "city_name": "Belford Roxo",
+            "state_id": 19
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 10,
+        "fields": {
+            "city_name": "São Bernardo do Campo",
+            "state_id": 25
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 11,
+        "fields": {
+            "city_name": "Jundiaí",
+            "state_id": 25
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 12,
+        "fields": {
+            "city_name": "Piracicaba",
+            "state_id": 25
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 13,
+        "fields": {
+            "city_name": "Londrina",
+            "state_id": 16
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 14,
+        "fields": {
+            "city_name": "Marília",
+            "state_id": 25
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 15,
+        "fields": {
+            "city_name": "Joinville",
+            "state_id": 24
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 16,
+        "fields": {
+            "city_name": "Caxias do Sul",
+            "state_id": 21
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 17,
+        "fields": {
+            "city_name": "Serra",
+            "state_id": 8
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 18,
+        "fields": {
+            "city_name": "Campinas",
+            "state_id": 25
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 19,
+        "fields": {
+            "city_name": "São Gonçalo",
+            "state_id": 19
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 20,
+        "fields": {
+            "city_name": "Florianópolis",
+            "state_id": 24
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 21,
+        "fields": {
+            "city_name": "Taubaté",
+            "state_id": 25
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 22,
+        "fields": {
+            "city_name": "Santo André",
+            "state_id": 25
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 23,
+        "fields": {
+            "city_name": "Petrolina",
+            "state_id": 17
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 24,
+        "fields": {
+            "city_name": "Vila Velha",
+            "state_id": 8
+        }
+    },
+    {
+        "model": "core.corecitymodel",
+        "pk": 25,
+        "fields": {
+            "city_name": "São Carlos",
+            "state_id": 25
+        }
+    }
+]

@@ -1,0 +1,218 @@
+[
+    {
+        "model": "core.corestatemodel",
+        "pk": 1,
+        "fields": {
+            "state_name": "Acre",
+            "state_abbreviation": "AC"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 2,
+        "fields": {
+            "state_name": "Alagoas",
+            "state_abbreviation": "AL"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 3,
+        "fields": {
+            "state_name": "Amapá",
+            "state_abbreviation": "AP"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 4,
+        "fields": {
+            "state_name": "Amazonas",
+            "state_abbreviation": "AM"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 5,
+        "fields": {
+            "state_name": "Bahia",
+            "state_abbreviation": "BA"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 6,
+        "fields": {
+            "state_name": "Ceará",
+            "state_abbreviation": "CE"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 7,
+        "fields": {
+            "state_name": "Distrito Federal",
+            "state_abbreviation": "DF"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 8,
+        "fields": {
+            "state_name": "Espírito Santo",
+            "state_abbreviation": "ES"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 9,
+        "fields": {
+            "state_name": "Goiás",
+            "state_abbreviation": "GO"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 10,
+        "fields": {
+            "state_name": "Maranhão",
+            "state_abbreviation": "MA"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 11,
+        "fields": {
+            "state_name": "Mato Grosso",
+            "state_abbreviation": "MT"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 12,
+        "fields": {
+            "state_name": "Mato Grosso do Sul",
+            "state_abbreviation": "MS"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 13,
+        "fields": {
+            "state_name": "Minas Gerais",
+            "state_abbreviation": "MG"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 14,
+        "fields": {
+            "state_name": "Pará",
+            "state_abbreviation": "PA"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 15,
+        "fields": {
+            "state_name": "Paraíba",
+            "state_abbreviation": "PB"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 16,
+        "fields": {
+            "state_name": "Paraná",
+            "state_abbreviation": "PR"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 17,
+        "fields": {
+            "state_name": "Pernambuco",
+            "state_abbreviation": "PE"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 18,
+        "fields": {
+            "state_name": "Piauí",
+            "state_abbreviation": "PI"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 19,
+        "fields": {
+            "state_name": "Rio de Janeiro",
+            "state_abbreviation": "RJ"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 20,
+        "fields": {
+            "state_name": "Rio Grande do Norte",
+            "state_abbreviation": "RN"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 21,
+        "fields": {
+            "state_name": "Rio Grande do Sul",
+            "state_abbreviation": "RS"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 22,
+        "fields": {
+            "state_name": "Rondônia",
+            "state_abbreviation": "RO"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 23,
+        "fields": {
+            "state_name": "Roraima",
+            "state_abbreviation": "RR"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 24,
+        "fields": {
+            "state_name": "Santa Catarina",
+            "state_abbreviation": "SC"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 25,
+        "fields": {
+            "state_name": "São Paulo",
+            "state_abbreviation": "SP"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 26,
+        "fields": {
+            "state_name": "Sergipe",
+            "state_abbreviation": "SE"
+        }
+    },
+    {
+        "model": "core.corestatemodel",
+        "pk": 27,
+        "fields": {
+            "state_name": "Tocantins",
+            "state_abbreviation": "TO"
+        }
+    }
+]
