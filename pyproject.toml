@@ -6,7 +6,9 @@ authors = ["Renan <renanhc96@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.10"
+python = "^3.12"
+django = "^5.0.7"
+djangorestframework = "^3.15.2"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -29,7 +31,7 @@ profile = "black"
 line_length = 79
 
 [tool.taskipy.tasks]
-lint = "blue --check --diff . && isort --check --diff ."
+lint = "blue . && isort ."
 pre_test = "task lint"
 test = "pytest -s -x --cov=agro_verx -vv"
 post_test = "coverage html"
