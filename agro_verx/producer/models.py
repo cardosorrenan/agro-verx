@@ -1,7 +1,12 @@
+from typing import Iterable
+
 from django.db import models
 
 from agro_verx.core.models import CoreCityModel
-from agro_verx.producer.utils import ProducerDocumentTypeEnum
+from agro_verx.producer.utils import (
+    ProducerDocumentTypeEnum,
+    validate_document_number,
+)
 
 
 class ProducerPlantationTypeModel(models.Model):
@@ -28,8 +33,15 @@ class ProducerModel(models.Model):
         choices=ProducerDocumentTypeEnum,
         db_column='producer_document_type',
     )
-    producer_document_number = models.CharField(
-        max_length=20, db_column='producer_document_number'
+    producer_cpf_number = models.CharField(
+        max_length=14,
+        null=True,
+        db_column='producer_cpf_number',
+    )
+    producer_cnpj_number = models.CharField(
+        max_length=18,
+        null=True,
+        db_column='producer_cnpj_number',
     )
     farm_name = models.CharField(max_length=128, db_column='farm_name')
 
