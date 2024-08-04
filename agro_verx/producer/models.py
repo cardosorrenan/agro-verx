@@ -75,7 +75,7 @@ class ProducerModel(models.Model):
 
     is_deleted = models.BooleanField(default=False)
 
-    def delete(self, *args, **kwargs):
+    def soft_delete(self, *args, **kwargs):
         self.is_deleted = True
         self.save()
 
