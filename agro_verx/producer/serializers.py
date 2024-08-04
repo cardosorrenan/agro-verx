@@ -1,12 +1,25 @@
 from django.core.exceptions import ValidationError
 from rest_framework import serializers
 
-from agro_verx.producer.models import ProducerModel
+from agro_verx.core.serializers import CoreCitySerializer
+from agro_verx.producer.models import (
+    ProducerModel,
+    ProducerPlantationModel,
+    ProducerPlantationTypeModel,
+)
 
 from .utils import validate_document_number
 
 
 class ProducerSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        if instance.city_id:
+            representation['city_id'] = CoreCitySerializer(
+                instance.city_id
+            ).data
+        return representation
+
     def validate(self, data):
         self._validate_document_number(data)
         self._validate_area_constraints(data)
@@ -33,9 +46,33 @@ class ProducerSerializer(serializers.ModelSerializer):
 
         if (arable_area + vegetation_area) <= total_area:
             raise serializers.ValidationError(
-                'The sum of arable_area_hectares and vegetation_area_hectares cannot exceed total_area_hectares.'
+                'The sum of arable area and vegetation area cannot exceed the total area.'
             )
 
     class Meta:
         model = ProducerModel
+        exclude = ('plantations',)
+
+
+class PlantationTypeSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = ProducerPlantationTypeModel
+        fields = '__all__'
+
+
+class ProducerPlantationSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+
+        representation['plantation_type_id'] = PlantationTypeSerializer(
+            instance.plantation_type_id
+        ).data
+
+        representation['producer_id'] = ProducerSerializer(
+            instance.producer_id
+        ).data
+        return representation
+
+    class Meta:
+        model = ProducerPlantationModel
         fields = '__all__'
