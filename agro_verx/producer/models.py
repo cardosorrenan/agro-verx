@@ -1,12 +1,7 @@
-from typing import Iterable
-
 from django.db import models
 
 from agro_verx.core.models import CoreCityModel
-from agro_verx.producer.utils import (
-    ProducerDocumentTypeEnum,
-    validate_document_number,
-)
+from agro_verx.producer.utils import ProducerDocumentTypeEnum
 
 
 class ProducerPlantationTypeModel(models.Model):
@@ -49,19 +44,16 @@ class ProducerModel(models.Model):
         max_digits=10,
         decimal_places=2,
         db_column='total_area_hectares',
-        null=True,
     )
     arable_area_hectares = models.DecimalField(
         max_digits=10,
         decimal_places=2,
         db_column='arable_area_hectares',
-        null=True,
     )
     vegetation_area_hectares = models.DecimalField(
         max_digits=10,
         decimal_places=2,
         db_column='vegetation_area',
-        null=True,
     )
 
     plantations = models.ManyToManyField(
