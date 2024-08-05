@@ -18,6 +18,11 @@ class ProducerPlantationTypeModel(models.Model):
         verbose_name_plural = 'Plantation Types'
 
 
+class NonDeletedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_deleted=False)
+
+
 class ProducerModel(models.Model):
     producer_id = models.BigAutoField(
         primary_key=True, db_column='producer_id'
@@ -38,7 +43,41 @@ class ProducerModel(models.Model):
         null=True,
         db_column='producer_cnpj_number',
     )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True, db_column='created_at'
+    )
+    updated_at = models.DateTimeField(auto_now=True, db_column='updated_at')
+
+    is_deleted = models.BooleanField(default=False)
+
+    objects = NonDeletedManager()
+
+    all_objects = models.Manager()
+
+    def soft_delete(self, *args, **kwargs):
+        self.is_deleted = True
+        self.save()
+
+    def restore(self, *args, **kwargs):
+        self.is_deleted = False
+        self.save()
+
+    class Meta:
+        db_table = 'producer_producer'
+        verbose_name = 'Producer'
+        verbose_name_plural = 'Producers'
+
+
+class ProducerFarmModel(models.Model):
     farm_name = models.CharField(max_length=128, db_column='farm_name')
+
+    producer_id = models.ForeignKey(
+        ProducerModel,
+        on_delete=models.PROTECT,
+        db_column='producer_id',
+        related_name='farms',
+    )
 
     total_area_hectares = models.DecimalField(
         max_digits=10,
@@ -57,7 +96,7 @@ class ProducerModel(models.Model):
     )
 
     plantations = models.ManyToManyField(
-        ProducerPlantationTypeModel, through='ProducerPlantationModel'
+        ProducerPlantationTypeModel, through='ProducerFarmPlantationModel'
     )
 
     city_id = models.ForeignKey(
@@ -65,7 +104,7 @@ class ProducerModel(models.Model):
         on_delete=models.PROTECT,
         null=True,
         db_column='city_id',
-        related_name='producers',
+        related_name='farms',
     )
 
     created_at = models.DateTimeField(
@@ -73,47 +112,38 @@ class ProducerModel(models.Model):
     )
     updated_at = models.DateTimeField(auto_now=True, db_column='updated_at')
 
-    is_deleted = models.BooleanField(default=False)
-
-    def soft_delete(self, *args, **kwargs):
-        self.is_deleted = True
-        self.save()
-
-    def restore(self, *args, **kwargs):
-        self.is_deleted = False
-        self.save()
-
     class Meta:
-        db_table = 'producer_producer'
-        verbose_name = 'Producer'
-        verbose_name_plural = 'Producers'
+        db_table = 'producer_farm'
+        verbose_name = 'Farm'
+        verbose_name_plural = 'Farms'
 
 
-class ProducerPlantationModel(models.Model):
-    producer_plantation_id = models.BigAutoField(
-        primary_key=True, db_column='producer_plantation_id'
+class ProducerFarmPlantationModel(models.Model):
+    farm_plantation_id = models.BigAutoField(
+        primary_key=True, db_column='farm_plantation_id'
     )
     plantation_type_id = models.ForeignKey(
         ProducerPlantationTypeModel,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         db_column='plantation_type_id',
         related_name='plantation_types',
     )
 
-    producer_id = models.ForeignKey(
-        ProducerModel,
-        on_delete=models.CASCADE,
-        db_column='producer_id',
-        related_name='producers',
+    farm_id = models.ForeignKey(
+        ProducerFarmModel,
+        on_delete=models.PROTECT,
+        db_column='farm_id',
+        related_name='farms',
     )
 
     created_at = models.DateTimeField(
-        auto_now_add=True, db_column='producer_plantation_created_at'
+        auto_now_add=True, db_column='farm_plantation_created_at'
     )
     updated_at = models.DateTimeField(
-        auto_now=True, db_column='producer_plantation_updated_at'
+        auto_now=True, db_column='farm_plantation_updated_at'
     )
 
     class Meta:
-        db_table = 'producer_producer_plantation_type'
-        verbose_name = 'Producer Platantions Types'
+        db_table = 'producer_farm_plantation_type'
+        verbose_name = 'Farm Plantations Types'
+        verbose_name_plural = 'Farm Plantation Type'

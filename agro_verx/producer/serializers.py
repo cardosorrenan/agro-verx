@@ -3,8 +3,9 @@ from rest_framework import serializers
 
 from agro_verx.core.serializers import CoreCitySerializer
 from agro_verx.producer.models import (
+    ProducerFarmModel,
+    ProducerFarmPlantationModel,
     ProducerModel,
-    ProducerPlantationModel,
     ProducerPlantationTypeModel,
 )
 
@@ -12,17 +13,8 @@ from .utils import validate_document_number
 
 
 class ProducerSerializer(serializers.ModelSerializer):
-    def to_representation(self, instance):
-        representation = super().to_representation(instance)
-        if instance.city_id:
-            representation['city_id'] = CoreCitySerializer(
-                instance.city_id
-            ).data
-        return representation
-
     def validate(self, data):
         self._validate_document_number(data)
-        self._validate_area_constraints(data)
         return data
 
     def _validate_document_number(self, data):
@@ -39,6 +31,29 @@ class ProducerSerializer(serializers.ModelSerializer):
         except ValidationError as e:
             raise serializers.ValidationError(e.message_dict)
 
+    class Meta:
+        model = ProducerModel
+        fields = '__all__'
+
+
+class ProducerFarmSerializer(serializers.ModelSerializer):
+    def to_representation(self, instance):
+        representation = super().to_representation(instance)
+        city_id = instance.city_id
+        if city_id:
+            representation['city_id'] = CoreCitySerializer(city_id).data
+
+        producer_id = instance.producer_id
+        if producer_id:
+            representation['producer_id'] = ProducerSerializer(
+                producer_id
+            ).data
+        return representation
+
+    def validate(self, data):
+        self._validate_area_constraints(data)
+        return data
+
     def _validate_area_constraints(self, data):
         total_area = data.get('total_area_hectares', 0)
         arable_area = data.get('arable_area_hectares', 0)
@@ -50,7 +65,7 @@ class ProducerSerializer(serializers.ModelSerializer):
             )
 
     class Meta:
-        model = ProducerModel
+        model = ProducerFarmModel
         exclude = ('plantations',)
 
 
@@ -60,7 +75,7 @@ class PlantationTypeSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ProducerPlantationSerializer(serializers.ModelSerializer):
+class ProducerFarmPlantationSerializer(serializers.ModelSerializer):
     def to_representation(self, instance):
         representation = super().to_representation(instance)
 
@@ -68,11 +83,11 @@ class ProducerPlantationSerializer(serializers.ModelSerializer):
             instance.plantation_type_id
         ).data
 
-        representation['producer_id'] = ProducerSerializer(
-            instance.producer_id
+        representation['farm_id'] = ProducerFarmSerializer(
+            instance.farm_id
         ).data
         return representation
 
     class Meta:
-        model = ProducerPlantationModel
+        model = ProducerFarmPlantationModel
         fields = '__all__'

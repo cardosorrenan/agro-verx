@@ -2,9 +2,14 @@ from rest_framework import status, viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from agro_verx.producer.models import ProducerModel, ProducerPlantationModel
+from agro_verx.producer.models import (
+    ProducerFarmModel,
+    ProducerFarmPlantationModel,
+    ProducerModel,
+)
 from agro_verx.producer.serializers import (
-    ProducerPlantationSerializer,
+    ProducerFarmPlantationSerializer,
+    ProducerFarmSerializer,
     ProducerSerializer,
 )
 
@@ -13,14 +18,11 @@ class ProducerViewset(viewsets.ModelViewSet):
     queryset = ProducerModel.objects.all()
     serializer_class = ProducerSerializer
 
-    def get_queryset(self):
-        return ProducerModel.objects.filter(is_deleted=False)
-
     @action(detail=True, methods=['patch'], url_path='restore')
     def restore(self, request, *args, **kwargs):
         pk = kwargs.get('pk')
         try:
-            instance = self.queryset.get(pk=pk)
+            instance = ProducerModel.all_objects.get(pk=pk)
         except ProducerModel.DoesNotExist:
             return Response(
                 {'detail': 'Producer not found.'},
@@ -37,7 +39,19 @@ class ProducerViewset(viewsets.ModelViewSet):
         return Response(status=status.HTTP_204_NO_CONTENT)
 
 
-class ProducerPlantationViewSet(viewsets.ModelViewSet):
-    queryset = ProducerPlantationModel.objects.all()
+class ProducerFarmPlantationViewSet(viewsets.ModelViewSet):
+    queryset = ProducerFarmPlantationModel.objects.filter(
+        farm_id__producer_id__is_deleted=False
+    )
     http_method_names = ['get', 'post', 'delete']
-    serializer_class = ProducerPlantationSerializer
+    serializer_class = ProducerFarmPlantationSerializer
+
+    def get_queryset(self):
+        return ProducerFarmPlantationModel.objects.filter(
+            farm_id__producer_id__is_deleted=False
+        )
+
+
+class ProducerFarmViewSet(viewsets.ModelViewSet):
+    queryset = ProducerFarmModel.objects.filter(producer_id__is_deleted=False)
+    serializer_class = ProducerFarmSerializer
