@@ -18,6 +18,11 @@ class ProducerPlantationTypeModel(models.Model):
         verbose_name_plural = 'Plantation Types'
 
 
+class NonDeletedManager(models.Manager):
+    def get_queryset(self):
+        return super().get_queryset().filter(is_deleted=False)
+
+
 class ProducerModel(models.Model):
     producer_id = models.BigAutoField(
         primary_key=True, db_column='producer_id'
@@ -28,40 +33,15 @@ class ProducerModel(models.Model):
         choices=ProducerDocumentTypeEnum,
         db_column='producer_document_type',
     )
-    producer_document_number = models.CharField(
-        max_length=20, db_column='producer_document_number'
-    )
-    farm_name = models.CharField(max_length=128, db_column='farm_name')
-
-    total_area_hectares = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        db_column='total_area_hectares',
+    producer_cpf_number = models.CharField(
+        max_length=14,
         null=True,
+        db_column='producer_cpf_number',
     )
-    arable_area_hectares = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        db_column='arable_area_hectares',
+    producer_cnpj_number = models.CharField(
+        max_length=18,
         null=True,
-    )
-    vegetation_area_hectares = models.DecimalField(
-        max_digits=10,
-        decimal_places=2,
-        db_column='vegetation_area',
-        null=True,
-    )
-
-    plantations = models.ManyToManyField(
-        ProducerPlantationTypeModel, through='ProducerPlantationModel'
-    )
-
-    city_id = models.ForeignKey(
-        CoreCityModel,
-        on_delete=models.PROTECT,
-        null=True,
-        db_column='city_id',
-        related_name='producers',
+        db_column='producer_cnpj_number',
     )
 
     created_at = models.DateTimeField(
@@ -71,7 +51,11 @@ class ProducerModel(models.Model):
 
     is_deleted = models.BooleanField(default=False)
 
-    def delete(self, *args, **kwargs):
+    objects = NonDeletedManager()
+
+    all_objects = models.Manager()
+
+    def soft_delete(self, *args, **kwargs):
         self.is_deleted = True
         self.save()
 
@@ -85,31 +69,81 @@ class ProducerModel(models.Model):
         verbose_name_plural = 'Producers'
 
 
-class ProducerPlantationModel(models.Model):
-    producer_plantation_id = models.BigAutoField(
-        primary_key=True, db_column='producer_plantation_id'
+class ProducerFarmModel(models.Model):
+    farm_name = models.CharField(max_length=128, db_column='farm_name')
+
+    producer_id = models.ForeignKey(
+        ProducerModel,
+        on_delete=models.PROTECT,
+        db_column='producer_id',
+        related_name='farms',
+    )
+
+    total_area_hectares = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        db_column='total_area_hectares',
+    )
+    arable_area_hectares = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        db_column='arable_area_hectares',
+    )
+    vegetation_area_hectares = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        db_column='vegetation_area_hectares',
+    )
+
+    plantations = models.ManyToManyField(
+        ProducerPlantationTypeModel, through='ProducerFarmPlantationModel'
+    )
+
+    city_id = models.ForeignKey(
+        CoreCityModel,
+        on_delete=models.PROTECT,
+        null=True,
+        db_column='city_id',
+        related_name='farms',
+    )
+
+    created_at = models.DateTimeField(
+        auto_now_add=True, db_column='created_at'
+    )
+    updated_at = models.DateTimeField(auto_now=True, db_column='updated_at')
+
+    class Meta:
+        db_table = 'producer_farm'
+        verbose_name = 'Farm'
+        verbose_name_plural = 'Farms'
+
+
+class ProducerFarmPlantationModel(models.Model):
+    farm_plantation_id = models.BigAutoField(
+        primary_key=True, db_column='farm_plantation_id'
     )
     plantation_type_id = models.ForeignKey(
         ProducerPlantationTypeModel,
-        on_delete=models.CASCADE,
+        on_delete=models.PROTECT,
         db_column='plantation_type_id',
         related_name='plantation_types',
     )
 
-    producer_id = models.ForeignKey(
-        ProducerModel,
-        on_delete=models.CASCADE,
-        db_column='producer_id',
-        related_name='producers',
+    farm_id = models.ForeignKey(
+        ProducerFarmModel,
+        on_delete=models.PROTECT,
+        db_column='farm_id',
+        related_name='farms',
     )
 
     created_at = models.DateTimeField(
-        auto_now_add=True, db_column='producer_plantation_created_at'
+        auto_now_add=True, db_column='farm_plantation_created_at'
     )
     updated_at = models.DateTimeField(
-        auto_now=True, db_column='producer_plantation_updated_at'
+        auto_now=True, db_column='farm_plantation_updated_at'
     )
 
     class Meta:
-        db_table = 'producer_producer_plantation_type'
-        verbose_name = 'Producer Platantions Types'
+        db_table = 'producer_farm_plantation_type'
+        verbose_name = 'Farm Plantations Types'
+        verbose_name_plural = 'Farm Plantation Type'

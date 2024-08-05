@@ -1,0 +1,132 @@
+[
+    {
+        "model": "producer.producermodel",
+        "pk": 1,
+        "fields": {
+            "producer_name": "José da Silva",
+            "producer_document_type": "CPF",
+            "producer_cpf_number": "123.456.789-00",
+            "producer_cnpj_number": null,
+            "created_at": "2024-08-05T00:00:00Z",
+            "updated_at": "2024-08-05T00:00:00Z",
+            "is_deleted": false
+        }
+    },
+    {
+        "model": "producer.producermodel",
+        "pk": 2,
+        "fields": {
+            "producer_name": "Maria Oliveira",
+            "producer_document_type": "CNPJ",
+            "producer_cpf_number": null,
+            "producer_cnpj_number": "12.345.678/0001-00",
+            "created_at": "2024-08-05T00:00:00Z",
+            "updated_at": "2024-08-05T00:00:00Z",
+            "is_deleted": false
+        }
+    },
+    {
+        "model": "producer.producermodel",
+        "pk": 3,
+        "fields": {
+            "producer_name": "Carlos Santos",
+            "producer_document_type": "CPF",
+            "producer_cpf_number": "987.654.321-00",
+            "producer_cnpj_number": null,
+            "created_at": "2024-08-05T00:00:00Z",
+            "updated_at": "2024-08-05T00:00:00Z",
+            "is_deleted": false
+        }
+    },
+    {
+        "model": "producer.producermodel",
+        "pk": 4,
+        "fields": {
+            "producer_name": "Ana Pereira",
+            "producer_document_type": "CNPJ",
+            "producer_cpf_number": null,
+            "producer_cnpj_number": "98.765.432/0001-00",
+            "created_at": "2024-08-05T00:00:00Z",
+            "updated_at": "2024-08-05T00:00:00Z",
+            "is_deleted": false
+        }
+    },
+    {
+        "model": "producer.producermodel",
+        "pk": 5,
+        "fields": {
+            "producer_name": "Luiz Souza",
+            "producer_document_type": "CPF",
+            "producer_cpf_number": "111.222.333-44",
+            "producer_cnpj_number": null,
+            "created_at": "2024-08-05T00:00:00Z",
+            "updated_at": "2024-08-05T00:00:00Z",
+            "is_deleted": false
+        }
+    },
+    {
+        "model": "producer.producermodel",
+        "pk": 6,
+        "fields": {
+            "producer_name": "Fernanda Costa",
+            "producer_document_type": "CNPJ",
+            "producer_cpf_number": null,
+            "producer_cnpj_number": "22.333.444/0001-00",
+            "created_at": "2024-08-05T00:00:00Z",
+            "updated_at": "2024-08-05T00:00:00Z",
+            "is_deleted": false
+        }
+    },
+    {
+        "model": "producer.producermodel",
+        "pk": 7,
+        "fields": {
+            "producer_name": "Pedro Lima",
+            "producer_document_type": "CPF",
+            "producer_cpf_number": "555.666.777-88",
+            "producer_cnpj_number": null,
+            "created_at": "2024-08-05T00:00:00Z",
+            "updated_at": "2024-08-05T00:00:00Z",
+            "is_deleted": false
+        }
+    },
+    {
+        "model": "producer.producermodel",
+        "pk": 8,
+        "fields": {
+            "producer_name": "Juliana Araújo",
+            "producer_document_type": "CNPJ",
+            "producer_cpf_number": null,
+            "producer_cnpj_number": "55.666.777/0001-00",
+            "created_at": "2024-08-05T00:00:00Z",
+            "updated_at": "2024-08-05T00:00:00Z",
+            "is_deleted": false
+        }
+    },
+    {
+        "model": "producer.producermodel",
+        "pk": 9,
+        "fields": {
+            "producer_name": "Marcelo Almeida",
+            "producer_document_type": "CPF",
+            "producer_cpf_number": "999.888.777-66",
+            "producer_cnpj_number": null,
+            "created_at": "2024-08-05T00:00:00Z",
+            "updated_at": "2024-08-05T00:00:00Z",
+            "is_deleted": false
+        }
+    },
+    {
+        "model": "producer.producermodel",
+        "pk": 10,
+        "fields": {
+            "producer_name": "Patricia Mendonça",
+            "producer_document_type": "CNPJ",
+            "producer_cpf_number": null,
+            "producer_cnpj_number": "88.999.000/0001-00",
+            "created_at": "2024-08-05T00:00:00Z",
+            "updated_at": "2024-08-05T00:00:00Z",
+            "is_deleted": false
+        }
+    }
+]

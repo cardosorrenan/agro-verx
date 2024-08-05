@@ -9,7 +9,11 @@ readme = "README.md"
 python = "^3.12"
 django = "^5.0.7"
 djangorestframework = "^3.15.2"
-
+psycopg2-binary = "^2.9"
+python-decouple = "^3.8"
+drf-yasg = "^1.21.7"
+setuptools = "^72.1.0"
+gunicorn = "^22.0.0"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.3.2"
@@ -35,4 +39,4 @@ lint = "blue . && isort ."
 pre_test = "task lint"
 test = "pytest -s -x --cov=agro_verx -vv"
 post_test = "coverage html"
-loaddata = "python manage.py loaddata core_state core_city producer_plantation_type"
+loaddata = "python manage.py loaddata core_state core_city producer_producer producer_farms producer_plantation_type producer_farm_plantation"

@@ -1,0 +1,28 @@
+version: "3.8"
+
+services:
+  agro-verx:
+    build: .
+    volumes:
+      - .:/agro_verx
+    env_file: .env
+    command: >
+      sh -c "python manage.py migrate &&
+             task loaddata &&
+             gunicorn --bind 0.0.0.0:8000 agro_verx.config.wsgi:application"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:14-alpine
+    container_name: db
+    volumes:
+      - data_db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file: .env
+
+volumes:
+  data_db:
