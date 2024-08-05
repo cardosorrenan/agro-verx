@@ -92,7 +92,7 @@ class ProducerFarmModel(models.Model):
     vegetation_area_hectares = models.DecimalField(
         max_digits=10,
         decimal_places=2,
-        db_column='vegetation_area',
+        db_column='vegetation_area_hectares',
     )
 
     plantations = models.ManyToManyField(

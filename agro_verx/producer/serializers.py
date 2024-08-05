@@ -55,11 +55,11 @@ class ProducerFarmSerializer(serializers.ModelSerializer):
         return data
 
     def _validate_area_constraints(self, data):
-        total_area = data.get('total_area_hectares', 0)
-        arable_area = data.get('arable_area_hectares', 0)
-        vegetation_area = data.get('vegetation_area_hectares', 0)
+        total_area = data.get('total_area_hectares', None)
+        arable_area = data.get('arable_area_hectares', None)
+        vegetation_area = data.get('vegetation_area_hectares', None)
 
-        if (arable_area + vegetation_area) <= total_area:
+        if (arable_area + vegetation_area) > total_area:
             raise serializers.ValidationError(
                 'The sum of arable area and vegetation area cannot exceed the total area.'
             )
