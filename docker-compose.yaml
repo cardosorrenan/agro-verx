@@ -3,18 +3,26 @@ version: "3.8"
 services:
   agro-verx:
     build: .
-    command: python agro_verx/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/agro_verx
+    env_file: .env
+    command: >
+      sh -c "python manage.py migrate &&
+             task loaddata &&
+             python manage.py runserver 0.0.0.0:8000"
     ports:
       - "8000:8000"
     depends_on:
       - db
 
   db:
-    image: postgres:13
+    image: postgres:14-alpine
+    container_name: db
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - data_db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    env_file: .env
 
 volumes:
-  postgres_data:
+  data_db:
