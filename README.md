@@ -44,14 +44,14 @@ docker-compose up --build
 
 ### 1. API documentation
 
-Available at `http://localhost:8000/docs/` 
+Available at `http://localhost:8000/v1/api/docs/` 
 
 ### 2. Example endpoints
 
-- **Producers:** `/api/producer/producer/`
-- **Farms:** `/api/producer/farm/`
-- **Plantations:** `/api/producer/farm-plantation/`
-- **Dashboard Home:** `/api/dashboard/home/`
+- **Producers:** `/v1/api/producer/producer/`
+- **Farms:** `/v1/api/producer/farm/`
+- **Plantations:** `/v1/api/producer/farm-plantation/`
+- **Dashboard Home:** `/v1/api/dashboard/home/`
 
 ### 3. Run tests
 

@@ -1,6 +1,10 @@
 from django.urls import include, path
 
+from . import yasg_schema
+
 urlpatterns = [
-    path('api/producer/', include('agro_verx.producer.urls')),
-    path('api/dashboard/', include('agro_verx.dashboard.urls')),
+    path('v1/api/producer/', include('agro_verx.producer.urls')),
+    path('v1/api/dashboard/', include('agro_verx.dashboard.urls')),
 ]
+
+urlpatterns += yasg_schema.urls
