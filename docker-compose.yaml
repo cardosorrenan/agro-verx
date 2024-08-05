@@ -9,7 +9,7 @@ services:
     command: >
       sh -c "python manage.py migrate &&
              task loaddata &&
-             python manage.py runserver 0.0.0.0:8000"
+             gunicorn --bind 0.0.0.0:8000 agro_verx.config.wsgi:application"
     ports:
       - "8000:8000"
     depends_on:

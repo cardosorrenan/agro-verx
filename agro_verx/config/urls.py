@@ -7,4 +7,4 @@ urlpatterns = [
     path('v1/api/dashboard/', include('agro_verx.dashboard.urls')),
 ]
 
-urlpatterns += yasg_schema.urls
+urlpatterns += yasg_schema.urlpatterns
