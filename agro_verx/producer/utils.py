@@ -68,4 +68,8 @@ def validate_document_number(document_type, cpf_number=None, cnpj_number=None):
     elif document_type == 'CNPJ':
         return validate_cnpj(cnpj_number)
     else:
-        raise ValidationError("Invalid document type. Must be CPF or CNPJ'.")
+        raise ValidationError(
+            {
+                'producer_document_type': 'Invalid document type. Must be CPF or CNPJ.'
+            }
+        )
