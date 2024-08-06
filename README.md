@@ -58,5 +58,5 @@ Available at `http://localhost:8000/v1/api/docs/`
 Use the following command:
 
 ```bash
- working...
+docker exec -it agro-verx-api task test
 ```
